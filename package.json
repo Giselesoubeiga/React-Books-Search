@@ -18,7 +18,8 @@
     "url": "git+https://github.com/Giselesoubeiga/React-Books-Search.git"
   },
   "author": "",
-  "license": "ISC", "devDependencies": {
+  "license": "ISC",
+  "devDependencies": {
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
@@ -29,6 +30,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.9.12",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-router-dom": "^5.1.2"
   }
 }
