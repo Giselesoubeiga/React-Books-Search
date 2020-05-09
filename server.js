@@ -30,8 +30,12 @@ db.once("open", function () {
     console.log("Mongoose connection successful")
 })
 
-require("./routes/apiroute")(app);
-require("./routes/htmlroute")(app);
+// require("./routes/apiroute")(app);
+// require("./routes/htmlroute")(app);
+const router= require ("express").Router()
+router.use("/salut",function(req,res){
+    console.log("salut")
+})
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));

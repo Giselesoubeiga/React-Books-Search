@@ -1,3 +1,8 @@
+body{
+  background-color: rgb(251, 255, 188);
+ 
+}
+
 .searchform{
   display: flex;
 }
@@ -16,4 +21,17 @@
 .searchItem{
   border: 1px solid #eee;
   margin: 20px 0;
+  background: white;
+}
+
+
+.searchItem .media-body{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+} 
+
+.searchItemButton button{
+  margin-right: 10px;
 }
