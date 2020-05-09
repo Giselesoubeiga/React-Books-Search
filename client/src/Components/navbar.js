@@ -1,9 +1,10 @@
 import React from "react";
+import{Link} from "react-router-dom"
 
 function navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-5">
         <a className="navbar-brand" href="#">
           Fixed navbar
         </a>
@@ -26,15 +27,15 @@ function navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
+              <Link className="nav-link" to="/saved">
+                Save
+              </Link>
             </li>
 
           </ul>
         </div>
       </nav>
-      <div className="jumbotron container">
+      <div className="jumbotron container ">
         <h1>Google Books Search</h1>
         <p className="lead">
         Search for and Save Books of Interest
