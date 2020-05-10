@@ -5,9 +5,9 @@ function navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-5">
-        <a className="navbar-brand" href="#">
-          Fixed navbar
-        </a>
+        <Link className="navbar-brand" to="/">
+         Books Search
+        </Link>
         <button
           className="navbar-toggler"
           type="button"

@@ -39,3 +39,12 @@ body{
 .jumbotron{
   margin-top: 100px;
 }
+
+.searchItemButton a{
+  display:inline-block;
+  margin-right: 20px;
+}
+
+.media-body p{
+  min-height: 100px;
+}

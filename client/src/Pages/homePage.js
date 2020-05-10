@@ -6,17 +6,27 @@ class HomePage extends React.Component {
     super(props)
     this.state = {
       books:[],
-      value:""
+      value:"",
+      loading:true
     }
   }
   submitSearch=(event)=>{
     event.preventDefault()
-    API.getBook("becoming").then((result)=>{
+    API.getBook(this.state.value).then((result)=>{
     this.setState({books:result.data.items.map(item=>this.makeBook(item))})
     console.log(this.state.books)
+    this.setState({loading:false})
     })
 
   
+  }
+
+  displayLoading=()=>{
+    return(this.state.loading?<h3>Searching Books</h3>:"")
+  }
+
+  handleInputSearch=(event)=>{
+    this.setState({value:event.target.value})
   }
 
 
@@ -32,9 +42,13 @@ class HomePage extends React.Component {
   }
 
 
+  savebook = (book)=>{
+    console.log(book)
+  }
+
   searchItem(book){
     return  (
-       <div className="searchItem">
+       <div className="searchItem" key={book._id}>
     <div className="media">
       <img src={book.image} className="mr-3" alt="..." />
       <div className="media-body">
@@ -46,7 +60,7 @@ class HomePage extends React.Component {
         </div>
         <div className="searchItemButton">
           <a href={book.link} className="btn btn-outline-success">View</a>
-          <button className="btn btn-outline-primary">save</button>
+          <button onClick={()=>this.savebook(book)} className="btn btn-outline-primary">save</button>
         </div>
       </div>
     </div>
@@ -59,20 +73,21 @@ class HomePage extends React.Component {
         <form methode="POST" onSubmit={this.submitSearch}>
           <div className="searchform">
             <input
-              type="email"
+              type="text"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Search"
+              onChange={this.handleInputSearch}
             />
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </div>
         </form>
-
-
        <div>
+
+         {/* {this.displayLoading()} */}
        {this.state.books.map(book=>{return this.searchItem(book)})}
        </div>
         </div>
