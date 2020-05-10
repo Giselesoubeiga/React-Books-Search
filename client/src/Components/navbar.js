@@ -35,12 +35,15 @@ function navbar() {
           </ul>
         </div>
       </nav>
-      <div className="jumbotron container ">
+      <div className="container">
+      <div className="jumbotron">
         <h1>Google Books Search</h1>
         <p className="lead">
         Search for and Save Books of Interest
         </p>
       </div>
+      </div>
+     
     </div>
   );
 }
