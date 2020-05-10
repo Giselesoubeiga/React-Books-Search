@@ -1,25 +1,51 @@
 import React from "react";
+import API from "./../helpers/api"
 
 class HomePage extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      books:[],
+      value:""
+    }
+  }
+  submitSearch=(event)=>{
+    event.preventDefault()
+    API.getBook("becoming").then((result)=>{
+    this.setState({books:result.data.items.map(item=>this.makeBook(item))})
+    console.log(this.state.books)
+    })
+
+  
+  }
+
+
+  makeBook = bookData => {
+    return {
+      _id: bookData.id,
+      title: bookData.volumeInfo.title,
+      authors: bookData.volumeInfo.authors,
+      description: bookData.volumeInfo.description,
+      image: bookData.volumeInfo.imageLinks.thumbnail,
+      link: bookData.volumeInfo.previewLink
+    }
+  }
+
 
   searchItem(book){
     return  (
        <div className="searchItem">
     <div className="media">
-      <img src="https://picsum.photos/200/300" className="mr-3" alt="..." />
+      <img src={book.image} className="mr-3" alt="..." />
       <div className="media-body">
         <div className="">
-          <h5 className="mt-0">Media heading</h5>
+          <h5 className="mt-0">{book.title}</h5>
           <p>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-            nisi vulputate fringilla. Donec lacinia congue felis in
-            faucibus.
+          {book.description}
           </p>
         </div>
         <div className="searchItemButton">
-          <button className="btn btn-outline-success">View</button>
+          <a href={book.link} className="btn btn-outline-success">View</a>
           <button className="btn btn-outline-primary">save</button>
         </div>
       </div>
@@ -30,7 +56,7 @@ class HomePage extends React.Component {
   render(){
     return (
       <div>
-        <form methode="POST">
+        <form methode="POST" onSubmit={this.submitSearch}>
           <div className="searchform">
             <input
               type="email"
@@ -44,6 +70,11 @@ class HomePage extends React.Component {
             </button>
           </div>
         </form>
+
+
+       <div>
+       {this.state.books.map(book=>{return this.searchItem(book)})}
+       </div>
         </div>
   
        
