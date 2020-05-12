@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Connect to Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/kudosDB", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/booksDB", {
     useNewUrlParser: true
 });
 
@@ -30,16 +30,12 @@ db.once("open", function () {
     console.log("Mongoose connection successful")
 })
 
-// require("./routes/apiroute")(app);
-// require("./routes/htmlroute")(app);
-const router= require ("express").Router()
-router.use("/salut",function(req,res){
-    console.log("salut")
-})
+require("./routes/apiroute")(app);
+require("./routes/htmlroute")(app);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+// });
 
 app.listen(PORT, function () {
     console.log(`🌎  ==> App is now listening on port : http://localhost:${PORT}`)

@@ -1,17 +1,20 @@
 import React from "react";
 import API from "./../helpers/api"
 
+
 class HomePage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      savedBooks:[],
       books:[],
       value:"",
-      loading:true
+      loading:false
     }
   }
   submitSearch=(event)=>{
     event.preventDefault()
+    this.setState({loading:true})
     API.getBook(this.state.value).then((result)=>{
     this.setState({books:result.data.items.map(item=>this.makeBook(item))})
     console.log(this.state.books)
@@ -20,6 +23,14 @@ class HomePage extends React.Component {
 
   
   }
+   
+   componentDidMount(){
+     API.savedBooks()
+     .then(books=>this.setState({savedBooks:books}))
+     .catch(err=>console.log (err))
+   }
+
+
 
   displayLoading=()=>{
     return(this.state.loading?<h3>Searching Books</h3>:"")
@@ -42,8 +53,32 @@ class HomePage extends React.Component {
   }
 
 
-  savebook = (book)=>{
+  loader = ()=>{
+    console.log(this.state.loading )
+    return(
+
+        this.state.loading ? <div className="myLoader">
+          <div className="spinner-border text-danger" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div> :null
+    )
+  }
+
+
+
+  savebook = (event,book)=>{
+    event.preventDefault()
     console.log(book)
+    if (this.state.savedBooks.map(book => book._id).includes(book._id)) {
+      API.deleteBook(book._id)
+          .then(deletedBook => this.setState({ savedBooks: this.state.savedBooks.filter(book => book._id !== deletedBook._id) }))
+          .catch(err => console.error(err));
+  } else {
+      API.saveBook(book)
+          .then(savedBook => this.setState({ savedBooks: this.state.savedBooks.concat([savedBook]) }))
+          .catch(err => console.error(err));
+  }
   }
 
   searchItem(book){
@@ -60,7 +95,9 @@ class HomePage extends React.Component {
         </div>
         <div className="searchItemButton">
           <a href={book.link} className="btn btn-outline-success">View</a>
-          <button onClick={()=>this.savebook(book)} className="btn btn-outline-primary">save</button>
+          <button onClick={(event)=>this.savebook(event,book)} className="btn btn-outline-primary">
+          {this.state.savedBooks.map(savebook => savebook._id).includes(book._id) ? "Unsave" : "Save"}
+          </button>
         </div>
       </div>
     </div>
@@ -70,6 +107,7 @@ class HomePage extends React.Component {
   render(){
     return (
       <div>
+        {this.loader()}
         <form methode="POST" onSubmit={this.submitSearch}>
           <div className="searchform">
             <input
