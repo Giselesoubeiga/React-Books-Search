@@ -119,7 +119,7 @@ class HomePage extends React.Component {
               onChange={this.handleInputSearch}
             />
             <button type="submit" className="btn btn-primary">
-              Submit
+              Search for Books
             </button>
           </div>
         </form>
