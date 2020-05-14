@@ -1,3 +1,5 @@
+Deploy link: 
+
 # React-Books-Search
 A react based google book search app for book lovers to search for their favorite books.
 
@@ -14,7 +16,7 @@ To run this application locally, use http://localhost:3000 after completing the 
 
 ```js
 git clone github.com/Giselesoubeiga/React-Google-Books-Search.git
-cd google-books-app
+cd React-Google-Books-Search
 npm install
 npm start
 ```
