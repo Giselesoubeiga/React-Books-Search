@@ -31,3 +31,5 @@ npm start
 # Screeshot
 
 ![searchgif](client/public/demo1.PNG)
+![searchgif](client/public/demo2.PNG)
+![searchgif](client/public/demo3.PNG)
