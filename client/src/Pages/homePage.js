@@ -70,9 +70,9 @@ class HomePage extends React.Component {
   savebook = (event,book)=>{
     event.preventDefault()
     console.log(book)
-    if (this.state.savedBooks.map(book => book._id).includes(book._id)) {
+    if (this.state.savedBooks.map(book => book.title).includes(book.title)) {
       API.deleteBook(book._id)
-          .then(deletedBook => this.setState({ savedBooks: this.state.savedBooks.filter(book => book._id !== deletedBook._id) }))
+          .then(deletedBook => this.setState({ savedBooks: this.state.savedBooks.filter(book => book.title !== deletedBook.title) }))
           .catch(err => console.error(err));
   } else {
       API.saveBook(book)
@@ -96,7 +96,7 @@ class HomePage extends React.Component {
         <div className="searchItemButton">
           <a href={book.link} className="btn btn-outline-success">View</a>
           <button onClick={(event)=>this.savebook(event,book)} className="btn btn-outline-primary">
-          {this.state.savedBooks.map(savebook => savebook._id).includes(book._id) ? "Unsave" : "Save"}
+          {this.state.savedBooks.map(savebook => savebook.title).includes(book.title) ? "Unsave" : "Save"}
           </button>
         </div>
       </div>
