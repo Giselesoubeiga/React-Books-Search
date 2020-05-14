@@ -1,4 +1,4 @@
-# React-Books-Searc
+# React-Books-Search
 A react based google book search app for book lovers to search for their favorite books.
 ### Deploy Link: 
 
