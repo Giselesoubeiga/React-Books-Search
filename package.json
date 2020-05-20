@@ -12,7 +12,6 @@
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build"
-    
   },
   "repository": {
     "type": "git",
@@ -32,6 +31,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "express": "^4.17.1",
+    "if-env": "^1.0.4",
     "mongoose": "^5.9.12",
     "path": "^0.12.7",
     "react-router-dom": "^5.1.2"
