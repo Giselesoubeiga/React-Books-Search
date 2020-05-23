@@ -23,14 +23,14 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/booksDB", {
 });
 
 
-const db = mongoose.connection;
-db.on("error", function (err) {
-    console.log("Mongoose Error: ", err);
-});
+// const db = mongoose.connection;
+// db.on("error", function (err) {
+//     console.log("Mongoose Error: ", err);
+// });
 
-db.once("open", function () {
-    console.log("Mongoose connection successful")
-})
+// db.once("open", function () {
+//     console.log("Mongoose connection successful")
+// })
 
 require("./routes/apiroute")(app);
 require("./routes/htmlroute")(app);
