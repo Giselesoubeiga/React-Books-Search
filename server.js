@@ -15,9 +15,8 @@ if (process.env.NODE_ENV === "production") {
 
 }
 
-// Connect to Mongo DB
-
-
+// Connect to Mongo DB  "mongodb://localhost/booksDB"
+mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/booksDB", {
     useNewUrlParser: true
 });
