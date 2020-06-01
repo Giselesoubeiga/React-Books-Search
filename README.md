@@ -1,6 +1,7 @@
 # React-Books-Search
 A react based google book search app for book lovers to search for their favorite books.
-### Deploy Link: https://www.linkedin.com/in/gisele-soubeiga-87b064196
+### Deploy Link:
+https://www.linkedin.com/in/gisele-soubeiga-87b064196
 
 * Enter the name of the book you wish to search and click the "Search for Books" button
 * List of books will appear based on the search query
@@ -20,7 +21,7 @@ npm install
 npm start
 ```
 
-* Technologies Used
+#  Technologies Used
 * React
 * JavaScript
 * MongoDB
